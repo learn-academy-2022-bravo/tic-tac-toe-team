@@ -7,47 +7,52 @@ class App extends Component{
     super(props)
     this.state = {
       squares: ["", "", "", "", "", "", "", "", ""],
-      lastClick: ""
+      lastClick: [""]
     }
   }
 
-  // if (this.state.lastClick === "") {
-  // console.log("last click is empty")
+  // handleGamePlay = (index) => {
+  //  const { squares } = this.state
+  //  squares[index] = "❌"
+  //  this.setState({squares: squares}) 
   // }
+  
+
+
 
   handleGamePlay = (index) => {
-   const { squares } = this.state
-   squares[index] = "❌"
-   this.setState({squares: squares}) 
+    const {squares, lastClick} = this.state
+    while(squares[index]===""){
+      if (lastClick[0] === ""){
+        squares[index] = "❌"
+        lastClick[0] = "❌"
+        this.setState({
+          squares: squares,
+          lastClick : lastClick
+        })
+      }else if(lastClick[0] === "❌"){
+        squares[index] = "⭕️"
+        lastClick[0] = "⭕️"
+        this.setState({
+          squares: squares,
+          lastClick: lastClick
+        })
+      }else if(lastClick[0] === "⭕️"){
+        squares[index] = "❌"
+        lastClick[0] = "❌"
+        this.setState({
+          squares: squares,
+          lastClick: lastClick
+        })
+      } else {
+        alert("Please Click a Valid Square")
+      }
   }
-   
-  //   if (this.state.lastClick === "") {
-  //     const { squares } = this.state
-  //   if (index === 0){
-  //     squares[index] = "❌"
-  //     this.setState({squares: squares})
-  //   }
-  //   }
-  // }
-
-//     } else if(this.state.lastClick === "X"){
-// // this changes the current index to a X
-//     }else {
-//       // this changes the current index to a O
-//     }
-      
-//   }
-
-  // handleGamePlay = (index) => {
-  //   const { squares } = this.state
-  //   if (index === 0){
-  //     squares[index] = "❌"
-  //     this.setState({squares: squares})
-  //   }
-  //   }
+  }
 
 
   render(){
+    console.log(this.state.lastClick);
     console.log(this.state.squares);
     return(
       <>
