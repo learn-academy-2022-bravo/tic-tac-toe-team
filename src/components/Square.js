@@ -6,7 +6,6 @@ class Square extends Component{
   }
 
   render() {
-    console.log(this.props.index);
     return(
       <>
         <div className="square" onClick={ this.handleClick} >
