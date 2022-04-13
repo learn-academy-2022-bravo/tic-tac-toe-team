@@ -45,24 +45,40 @@ class App extends Component{
 
   
 gameMaster = () => {
-  const {squares} = this.state
+  
 
-  let gameWinner = (squares) => {
-    let winningArrays =
-    [0, 1, 2]
-    [0, 4, 8]
-    [0, 3, 6]
-    [1, 4, 7]
-    [2, 5, 8]
-    [6, 7, 8]
-    [3, 4, 5]
-    [6, 4, 2]
-    // if squares[winningArrays] = "⭕️" || "❌" return alert ("You Win!")
-    if(this.state.squares[this.winningArrays] === ["❌","❌","❌"] || ["⭕️","⭕️","⭕️"]) {
-      alert("You Win! Game over.")
+  gameWinner = (squares) => {
+    const {squares} = this.state
+      let winningArrays = [
+      [0, 1, 2],
+      [0, 4, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [6, 7, 8],
+      [3, 4, 5],
+      [6, 4, 2],
+      ]
+    for (let i = 0; i < winningArrays.length; i++) {
+      const [a, b, c] = winningArrays[i];
+      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+        this.setState( {})
+      }
     }
-  }
-}
+    return null; 
+    }
+
+
+
+
+
+
+//     // if squares[winningArrays] = "⭕️" || "❌" return alert ("You Win!")
+//     if(this.state.squares[this.winningArrays] === ["❌","❌","❌"] || ["⭕️","⭕️","⭕️"]) {
+//       alert("You Win! Game over.")
+//     }
+//   }
+// }
 
 
   handleGamePlay = (index) => {
@@ -94,7 +110,7 @@ gameMaster = () => {
       }
   }
   }
-
+  }
 
   render(){
     // console.log(this.state.lastClick);
