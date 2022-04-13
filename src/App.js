@@ -7,79 +7,43 @@ class App extends Component{
     super(props)
     this.state = {
       squares: ["", "", "", "", "", "", "", "", ""],
+      // squares: Array(9).fill(null)
       lastClick: [""],
-      playerX: [""],
-      playerO: [""]
+      playerX:[""],
+      playerO:[""]
     }
-  }
+  } 
 
-
-
-// handleWinners = (index) => {
-//   const {playerX, playerO} = this.state
-//   // let winningTotals= [7, 273,73,56,448,146,292,84]
-//   let squaresValue= [1,2,4,8,16,32,64,128,256]
-  
-//   this.state.squares.filter((value , indeX) => {
-//     if(value === "❌"){
-//       playerX[0] = this.state.playerX[0] + squaresValue[indeX]
-//       this.setState({
-//         playerX: this.state.playerX,
-    
-//       })
-//     }else if(value === "⭕️"){
-//       playerO[0] = this.state.playerO[0] + squaresValue[indeX]
-//       this.setState({
-//         playerO: this.state.playerO,
-//       })
-//     }
-//     console.log(this.state.playerX)
-//     console.log(this.state.playerO)
-//   }
-  
-//   )}
-
-
-
-
-
-  
-gameMaster = () => {
-  
-
-  gameWinner = (squares) => {
-    const {squares} = this.state
-      let winningArrays = [
+  winning = () => {
+    // calculate winner function 
+  calculateWinner = (squares) => {
+    const lines = [
       [0, 1, 2],
-      [0, 4, 8],
+      [3, 4, 5],
+      [6, 7, 8],
       [0, 3, 6],
       [1, 4, 7],
       [2, 5, 8],
-      [6, 7, 8],
-      [3, 4, 5],
-      [6, 4, 2],
-      ]
-    for (let i = 0; i < winningArrays.length; i++) {
-      const [a, b, c] = winningArrays[i];
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+    for (let i = 0; i < lines.length; i++) {
+      const [a, b, c] = lines[i];
       if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        this.setState( {})
+        this.setState({ winner: squares[a]})
       }
     }
-    return null; 
-    }
-
-
-
-
-
-
-//     // if squares[winningArrays] = "⭕️" || "❌" return alert ("You Win!")
-//     if(this.state.squares[this.winningArrays] === ["❌","❌","❌"] || ["⭕️","⭕️","⭕️"]) {
-//       alert("You Win! Game over.")
-//     }
-//   }
-// }
-
+  }
+}
+// GAME RESET BUTTON
+  // gameReset = () => {
+  //   this.setState({
+  //     squares: Array(9).fill(null),
+  //     winner: null,
+  //     currentPlayer: "❌"
+  //   })
+  // }
+ 
 
   handleGamePlay = (index) => {
     const {squares, lastClick} = this.state
@@ -110,14 +74,11 @@ gameMaster = () => {
       }
   }
   }
-  }
+
 
   render(){
-    // console.log(this.state.lastClick);
+    console.log(this.state.lastClick);
     console.log(this.state.squares);
-    // console.log(this.state.playerO);
-
-
     return(
       <>
         <h1>Treasure Hunt Game</h1>
@@ -149,23 +110,3 @@ export default App
 
 
 
-// calculate winner function 
-// export function calculateWinner(squares) {
-// 	const lines = [
-// 		[0, 1, 2],
-// 		[3, 4, 5],
-// 		[6, 7, 8],
-// 		[0, 3, 6],
-// 		[1, 4, 7],
-// 		[2, 5, 8],
-// 		[0, 4, 8],
-// 		[2, 4, 6],
-// 	];
-// 	for (let i = 0; i < lines.length; i++) {
-// 		const [a, b, c] = lines[i];
-// 		if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-// 			return squares[a];
-// 		}
-// 	}
-// 	return null;
-// }
